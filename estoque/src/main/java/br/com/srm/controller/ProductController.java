@@ -23,7 +23,7 @@ public class ProductController {
     public ProductResponse save(@PathVariable("id") Long departmentId,
                                 @Valid @RequestBody ProductRequest productRequest) {
         ProductEntity product = productMapper.productRequestToProductEntity(departmentId, productRequest);
-        return productMapper.productEntityToProductResponse(productService.save(departmentId, product));
+        return productMapper.productEntityToProductResponse(productService.save(product));
     }
 
     @RequestMapping(value = "/{isbn}", method = RequestMethod.GET)

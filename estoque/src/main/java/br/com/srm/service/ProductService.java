@@ -3,7 +3,6 @@ package br.com.srm.service;
 import br.com.srm.exception.BusinessServiceException;
 import br.com.srm.model.ProductEntity;
 import br.com.srm.repository.ProductRepository;
-import org.hibernate.service.spi.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     @Transactional
-    public ProductEntity save(Long departmentId, ProductEntity product) {
+    public ProductEntity save(ProductEntity product) {
         logger.info("m=save, product={}", product);
         if (productRepository.findByIsbn(product.getIsbn()) != null)
             throw new BusinessServiceException("Já existe um produto com esse codigo ISBN");
@@ -40,11 +39,11 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public ProductEntity subtractAmount(String barCode, Integer amount) {
-        logger.info("m=subtractAmount, barCode={}, amount={}", barCode, amount);
-        ProductEntity product = findByISBN(barCode);
+    public ProductEntity subtractAmount(String isbn, Integer amount) {
+        logger.info("m=subtractAmount, isbn={}, amount={}", isbn, amount);
+        ProductEntity product = findByISBN(isbn);
         if (product.getAmount() < amount)
-            throw new ServiceException("Quantidade não está disponível no estoque");
+            throw new BusinessServiceException("Quantidade não está disponível no estoque");
         product.setAmount(product.getAmount() - amount);
         return productRepository.save(product);
     }

@@ -7,9 +7,12 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Builder
 @Data
 @Entity
 @Table(name = "srm_product")
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductEntity implements Serializable {
 
     @Id
