@@ -1,14 +1,14 @@
 {
 	"info": {
-		"name": "SRM",
-		"_postman_id": "48ea0dad-9bf7-4d4f-b5f4-366b260a6bb2",
+		"name": "SRM copy",
+		"_postman_id": "c743428b-5cd6-4101-bf72-805013ee6a97",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "estoque",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "Criar Produto",
@@ -22,10 +22,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"Domain-driven Design\",\n\t\"barCode\": \"890099 349989\",\n\t\"department\": \"Livros Técnicos\",\n\t\"amount\": 20\n}"
+							"raw": "{\n\t\"name\": \"Domain-driven Design\",\n\t\"isbn\": \"890099.349989\",\n\t\"department\": \"Livros Técnicos\",\n\t\"amount\": 20,\n\t\"cost\": 21.99\n}"
 						},
 						"url": {
-							"raw": "http://172.32.0.101:8080/v1/products",
+							"raw": "http://172.32.0.101:8080/v1/departments/1/products/",
 							"protocol": "http",
 							"host": [
 								"172",
@@ -36,10 +36,13 @@
 							"port": "8080",
 							"path": [
 								"v1",
-								"products"
+								"departments",
+								"1",
+								"products",
+								""
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -48,9 +51,12 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://172.32.0.101:8080/v1/products/890099 349989",
+							"raw": "http://172.32.0.101:8080/v1/departments/1/products/890099.349989",
 							"protocol": "http",
 							"host": [
 								"172",
@@ -61,11 +67,13 @@
 							"port": "8080",
 							"path": [
 								"v1",
+								"departments",
+								"1",
 								"products",
-								"890099 349989"
+								"890099.349989"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -74,9 +82,12 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
-							"raw": "http://172.32.0.101:8080/v1/products/890099 349989",
+							"raw": "http://172.32.0.101:8080/v1/departments/1/products/890099.349989",
 							"protocol": "http",
 							"host": [
 								"172",
@@ -87,11 +98,13 @@
 							"port": "8080",
 							"path": [
 								"v1",
+								"departments",
+								"1",
 								"products",
-								"890099 349989"
+								"890099.349989"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -106,13 +119,12 @@
 								{
 									"key": "amount",
 									"value": "5",
-									"description": "",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://172.32.0.101:8080/v1/products/890099 349989/addAmount",
+							"raw": "http://172.32.0.101:8080/v1/departments/1/products/890099.349989/addAmount",
 							"protocol": "http",
 							"host": [
 								"172",
@@ -123,12 +135,14 @@
 							"port": "8080",
 							"path": [
 								"v1",
+								"departments",
+								"1",
 								"products",
-								"890099 349989",
+								"890099.349989",
 								"addAmount"
 							]
 						},
-						"description": ""
+						"description": null
 					},
 					"response": []
 				},
@@ -143,13 +157,12 @@
 								{
 									"key": "amount",
 									"value": "8",
-									"description": "",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://172.32.0.101:8080/v1/products/890099 349989/subtractAmount",
+							"raw": "http://172.32.0.101:8080/v1/departments/1/products/890099.349989/subtractAmount",
 							"protocol": "http",
 							"host": [
 								"172",
@@ -160,9 +173,91 @@
 							"port": "8080",
 							"path": [
 								"v1",
+								"departments",
+								"1",
 								"products",
-								"890099 349989",
+								"890099.349989",
 								"subtractAmount"
+							]
+						},
+						"description": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "deparment",
+			"description": "",
+			"item": [
+				{
+					"name": "save",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Literatura Internacional\",\n\t\"description\": \"Livros de Literatura Internacional\"\n}"
+						},
+						"url": {
+							"raw": "http://172.32.0.101:8080/v1/departments",
+							"protocol": "http",
+							"host": [
+								"172",
+								"32",
+								"0",
+								"101"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"departments"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Literatura Nacional\",\n\t\"description\": \"Livros de Literatura Nacional\"\n}"
+						},
+						"url": {
+							"raw": "http://172.32.0.101:8080/v1/departments/search?name=Nacional",
+							"protocol": "http",
+							"host": [
+								"172",
+								"32",
+								"0",
+								"101"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"departments",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Nacional",
+									"equals": true
+								}
 							]
 						},
 						"description": ""
