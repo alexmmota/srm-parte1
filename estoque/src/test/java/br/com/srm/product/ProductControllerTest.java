@@ -46,8 +46,10 @@ public class ProductControllerTest {
         ProductEntity productEntity = buildProductEntity();
         ProductRequest productRequest = buildProductRequest();
         ProductResponse productResponse = buildProductResponse();
-        Mockito.when(productMapper.productRequestToProductEntity(1l, productRequest)).thenReturn(productEntity);
-        Mockito.when(productMapper.productEntityToProductResponse(productEntity)).thenReturn(productResponse);
+        Mockito.when(productMapper.productRequestToProductEntity(1l, productRequest))
+                .thenReturn(productEntity);
+        Mockito.when(productMapper.productEntityToProductResponse(productEntity))
+                .thenReturn(productResponse);
     }
 
     @Test
@@ -56,7 +58,8 @@ public class ProductControllerTest {
         ProductEntity productEntity = buildProductEntity();
         given(productService.save(Mockito.any())).willReturn(productEntity);
 
-        mvc.perform(post("/v1/departments/1/products").contentType(MediaType.APPLICATION_JSON).content(JsonUtil.toJson(productRequest)))
+        mvc.perform(post("/v1/departments/1/products").contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.toJson(productRequest)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.isbn", is("112314.123123")));
 

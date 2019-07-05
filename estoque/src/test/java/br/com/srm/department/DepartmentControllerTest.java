@@ -47,8 +47,10 @@ public class DepartmentControllerTest {
         DepartmentEntity departmentEntity = buildDepartmentEntity();
         DepartmentRequest departmentRequest = buildDepartmentRequest();
         DepartmentResponse departmentResponse = buildDepartmentResponse();
-        Mockito.when(departmentMapper.departmentRequestToDepartmentEntity(departmentRequest)).thenReturn(departmentEntity);
-        Mockito.when(departmentMapper.departmentEntityToDepartmentResponse(departmentEntity)).thenReturn(departmentResponse);
+        Mockito.when(departmentMapper.departmentRequestToDepartmentEntity(departmentRequest))
+                .thenReturn(departmentEntity);
+        Mockito.when(departmentMapper.departmentEntityToDepartmentResponse(departmentEntity))
+                .thenReturn(departmentResponse);
     }
 
     @Test
@@ -57,7 +59,9 @@ public class DepartmentControllerTest {
         DepartmentEntity departmentEntity = buildDepartmentEntity();
         given(departmentService.save(Mockito.any())).willReturn(departmentEntity);
 
-        mvc.perform(post("/v1/departments").contentType(MediaType.APPLICATION_JSON).content(JsonUtil.toJson(departmentRequest)))
+        mvc.perform(post("/v1/departments")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.toJson(departmentRequest)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is("Literatura Nacional")));
 
@@ -67,9 +71,11 @@ public class DepartmentControllerTest {
     public void whenFindByName_thenReturnList() throws Exception {
         DepartmentEntity departmentEntity = buildDepartmentEntity();
         DepartmentEntity departmentEntity2 = buildDepartmentEntity2();
-        given(departmentService.findByName(Mockito.any())).willReturn(Arrays.asList(departmentEntity, departmentEntity2));
+        given(departmentService.findByName(Mockito.any()))
+                .willReturn(Arrays.asList(departmentEntity, departmentEntity2));
 
-        mvc.perform(get("/v1/departments/search?name=literatura").contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(get("/v1/departments/search?name=literatura")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", is("Literatura Nacional")));

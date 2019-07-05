@@ -24,7 +24,7 @@
         <start-class>br.com.srm.Application</start-class>
         <org.projectlombok.version>1.18.6</org.projectlombok.version>
         <docker.image.name>srm/estoque-service</docker.image.name>
-        <docker.image.tag>latest</docker.image.tag>
+        <docker.image.tag>parte1</docker.image.tag>
         <org.mapstruct.version>1.3.0.Final</org.mapstruct.version>
     </properties>
 

@@ -40,8 +40,10 @@ public class DepartmentServiceTest {
     public void setUp() {
         DepartmentEntity department1 = buildDepartment1();
         DepartmentEntity department2 = buildDepartment2();
-        Mockito.when(departmentRepository.findByNameContainingIgnoreCase("literatura")).thenReturn(Arrays.asList(department1, department2));
-        Mockito.when(departmentRepository.findByName(department1.getName())).thenReturn(department1);
+        Mockito.when(departmentRepository.findByNameContainingIgnoreCase("literatura"))
+                .thenReturn(Arrays.asList(department1, department2));
+        Mockito.when(departmentRepository.findByName(department1.getName()))
+                .thenReturn(department1);
     }
 
     @Test
